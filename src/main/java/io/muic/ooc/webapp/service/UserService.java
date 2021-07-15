@@ -21,7 +21,7 @@ public class UserService {
     }
 
     public static UserService getInstance() {
-        if (service == null){
+        if (service == null) {
             service = new UserService();
             service.setDatabaseConnectionService(DatabaseConnectionService.getInstance());
         }
@@ -35,9 +35,10 @@ public class UserService {
     // create new user
     public void createUser(String username, String password, String displayName) throws UserServiceException {
 
-        try {
-            Connection connection = databaseConnectionService.getConnection();
-            PreparedStatement ps = connection.prepareStatement(INSERT_USER_SQL);
+        try (
+                Connection connection = databaseConnectionService.getConnection();
+                PreparedStatement ps = connection.prepareStatement(INSERT_USER_SQL);
+        ) {
             ps.setString(1, username);
             ps.setString(2, BCrypt.hashpw(password, BCrypt.gensalt()));
             ps.setString(3, displayName);
@@ -54,9 +55,10 @@ public class UserService {
     // find user by username
 
     public User findByUsername(String username) {
-        try {
-            Connection connection = databaseConnectionService.getConnection();
-            PreparedStatement ps = connection.prepareStatement(SELECT_USER_SQL);
+        try (
+                Connection connection = databaseConnectionService.getConnection();
+                PreparedStatement ps = connection.prepareStatement(SELECT_USER_SQL);
+        ) {
             ps.setString(1, username);
             ResultSet resultSet = ps.executeQuery();
             resultSet.next();
@@ -76,9 +78,11 @@ public class UserService {
     // list all user
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        try {
-            Connection connection = databaseConnectionService.getConnection();
-            PreparedStatement ps = connection.prepareStatement(SELECT_ALL_USERS_SQL);
+        try (
+                Connection connection = databaseConnectionService.getConnection();
+                PreparedStatement ps = connection.prepareStatement(SELECT_ALL_USERS_SQL);
+        ) {
+
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
                 users.add(
@@ -97,20 +101,18 @@ public class UserService {
     }
 
     // delete user
-    public void deleteUserByUsername(){
+    public void deleteUserByUsername() {
         throw new UnsupportedOperationException("Not yet implement");
     }
 
     // update user by user id
-    public void updateUserById(long id, String password, String displayName){
+    public void updateUserById(long id, String password, String displayName) {
         throw new UnsupportedOperationException("Not yet implement");
     }
 
-    public void changePassword(String newPassword){
+    public void changePassword(String newPassword) {
         throw new UnsupportedOperationException("Not yet implement");
     }
-
-
 
 
     public static void main(String[] args) {
