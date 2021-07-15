@@ -22,7 +22,7 @@ public class DatabaseConnectionService {
         }
 
         ds.setDriverClassName(configProperties.getDatabaseDriverClassName());
-        ds.setJdbcUrl(configProperties.getDatabaseDriverClassName());
+        ds.setJdbcUrl(configProperties.getDatabaseConnectionUrl());
         ds.addDataSourceProperty("user", configProperties.getDatabaseUsername());
         ds.addDataSourceProperty("password", configProperties.getDatabasePassword());
         ds.setAutoCommit(false);
@@ -32,5 +32,5 @@ public class DatabaseConnectionService {
         return ds.getConnection();
     }
 
-   
+
 }
