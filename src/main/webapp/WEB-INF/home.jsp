@@ -70,18 +70,21 @@
                             <i class="fa fa-trash"></i>
                         </button>
                         <!-- Modal -->
-                        <div class="modal fade" id="delete-modal-${user.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="delete-modal-${user.id}" tabindex="-1"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalLabel">Confirm deleteing user</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body my-4">
                                         Do you want to delete user <b>${user.displayName} (${user.username})</b>?
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close
+                                        </button>
                                         <a class="btn btn-danger" href="/user/delete?username=${user.username}">
                                             <i class="fa fa-trash"></i> &nbsp; Delete
                                         </a>
