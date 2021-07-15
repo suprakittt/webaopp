@@ -5,6 +5,7 @@
  */
 package io.muic.ooc.webapp;
 
+import io.muic.ooc.webapp.servlet.DeleteUserServlet;
 import io.muic.ooc.webapp.servlet.HomeServlet;
 import io.muic.ooc.webapp.service.SecurityService;
 import io.muic.ooc.webapp.servlet.LoginServlet;
@@ -26,8 +27,10 @@ public class ServletRouter {
 
     static {
         routables.add(HomeServlet.class);
+        routables.add(DeleteUserServlet.class);
         routables.add(LoginServlet.class);
         routables.add(LogoutServlet.class);
+
     }
 
     private SecurityService securityService;
