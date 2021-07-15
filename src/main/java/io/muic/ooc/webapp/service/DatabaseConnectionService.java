@@ -5,15 +5,17 @@ import io.muic.ooc.webapp.config.ConfigProperties;
 import io.muic.ooc.webapp.config.ConfigurationLoader;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseConnectionService {
 
+    private static DatabaseConnectionService service;
+
     private final HikariDataSource ds;
 
 
-    public DatabaseConnectionService() {
+
+    private DatabaseConnectionService() {
         ds = new HikariDataSource();
         ds.setMaximumPoolSize(20);
         ConfigProperties configProperties = ConfigurationLoader.load();
@@ -30,6 +32,13 @@ public class DatabaseConnectionService {
 
     public Connection getConnection() throws SQLException {
         return ds.getConnection();
+    }
+
+    public static DatabaseConnectionService getInstance(){
+        if (service == null){
+            service = new DatabaseConnectionService();
+        }
+        return service;
     }
 
 
