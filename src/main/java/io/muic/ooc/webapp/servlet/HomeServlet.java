@@ -49,8 +49,8 @@ public class HomeServlet extends HttpServlet implements Routable {
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/home.jsp");
             rd.include(request, response);
 
-            request.removeAttribute("hasError");
-            request.removeAttribute("message");
+            request.getSession().removeAttribute("hasError");
+            request.getSession().removeAttribute("message");
 
         } else {
             request.removeAttribute("hasError");
