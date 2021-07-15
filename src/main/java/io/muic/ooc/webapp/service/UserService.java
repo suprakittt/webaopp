@@ -85,7 +85,18 @@ public class UserService {
     }
 
     // delete user
+    public void deleteUserByUsername(){
+        throw new UnsupportedOperationException("Not yet implement");
+    }
+
     // update user by user id
+    public void updateUserById(long id, String password, String displayName){
+        throw new UnsupportedOperationException("Not yet implement");
+    }
+
+    public void changePassword(String newPassword){
+        throw new UnsupportedOperationException("Not yet implement");
+    }
 
 
     public static void main(String[] args) {
